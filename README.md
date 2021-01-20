@@ -2,7 +2,7 @@
 
 This is a data repository for a project investigating the relationship between SVI, CCVI, and COVID-19 mortality.<br/>
 <br/>
-**Investigators:**<br/>
+**Contributors:**<br/>
 Xuan Han, MD<br/>
 Monica E. Peek, MD, MPH, MS<br/>
 Robert D. Gibbons, PhD<br/>
