@@ -1,0 +1,583 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/shan/Dropbox/Susan (personal)/vaccine allocation/national data/SVI_mortality_19Jan.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}19 Jan 2021, 11:27:18
+
+{com}. use "/Users/shan/Dropbox/Susan (personal)/vaccine allocation/national data/national_county_data_final.dta", clear
+
+. 
+. drop if state == "DC"
+{txt}(1 observation deleted)
+
+{com}. 
+. encode state, gen(ST)
+
+. 
+. egen state_flag = tag(state)
+
+. 
+. * COVID-19 mortality explained by state 
+
+. regress  deaths_per_thous i.ST
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     3,141
+{txt}{hline 13}{c +}{hline 34}   F(49, 3091)     = {res}    23.92
+{txt}       Model {c |} {res}  748.14224        49   15.268209   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 1973.40658     3,091  .638436292   {txt}R-squared       ={res}    0.2749
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2634
+{txt}       Total {c |} {res} 2721.54882     3,140  .866735293   {txt}Root MSE        =   {res} .79902
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}deaths_per~s{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}ST {c |}
+{space 9}AL  {c |}{col 14}{res}{space 2} 1.157886{col 26}{space 2} .1776061{col 37}{space 1}    6.52{col 46}{space 3}0.000{col 54}{space 4} .8096481{col 67}{space 3} 1.506124
+{txt}{space 9}AR  {c |}{col 14}{res}{space 2} 1.370753{col 26}{space 2} .1747213{col 37}{space 1}    7.85{col 46}{space 3}0.000{col 54}{space 4} 1.028171{col 67}{space 3} 1.713334
+{txt}{space 9}AZ  {c |}{col 14}{res}{space 2} 1.639717{col 26}{space 2}  .254121{col 37}{space 1}    6.45{col 46}{space 3}0.000{col 54}{space 4} 1.141454{col 67}{space 3}  2.13798
+{txt}{space 9}CA  {c |}{col 14}{res}{space 2} .3168461{col 26}{space 2} .1817211{col 37}{space 1}    1.74{col 46}{space 3}0.081{col 54}{space 4}-.0394602{col 67}{space 3} .6731525
+{txt}{space 9}CO  {c |}{col 14}{res}{space 2} .6884446{col 26}{space 2} .1788592{col 37}{space 1}    3.85{col 46}{space 3}0.000{col 54}{space 4} .3377497{col 67}{space 3}  1.03914
+{txt}{space 9}CT  {c |}{col 14}{res}{space 2} 1.209089{col 26}{space 2} .3190918{col 37}{space 1}    3.79{col 46}{space 3}0.000{col 54}{space 4}  .583436{col 67}{space 3} 1.834743
+{txt}{space 9}DE  {c |}{col 14}{res}{space 2} .8288413{col 26}{space 2} .4845897{col 37}{space 1}    1.71{col 46}{space 3}0.087{col 54}{space 4} -.121309{col 67}{space 3} 1.778992
+{txt}{space 9}FL  {c |}{col 14}{res}{space 2} .9788425{col 26}{space 2} .1776061{col 37}{space 1}    5.51{col 46}{space 3}0.000{col 54}{space 4} .6306045{col 67}{space 3} 1.327081
+{txt}{space 9}GA  {c |}{col 14}{res}{space 2} 1.348321{col 26}{space 2} .1613393{col 37}{space 1}    8.36{col 46}{space 3}0.000{col 54}{space 4} 1.031978{col 67}{space 3} 1.664664
+{txt}{space 9}HI  {c |}{col 14}{res}{space 2}-.1148171{col 26}{space 2} .3869138{col 37}{space 1}   -0.30{col 46}{space 3}0.767{col 54}{space 4}-.8734513{col 67}{space 3} .6438171
+{txt}{space 9}IA  {c |}{col 14}{res}{space 2} 1.461435{col 26}{space 2} .1687125{col 37}{space 1}    8.66{col 46}{space 3}0.000{col 54}{space 4} 1.130635{col 67}{space 3} 1.792235
+{txt}{space 9}ID  {c |}{col 14}{res}{space 2} .5985016{col 26}{space 2}  .191115{col 37}{space 1}    3.13{col 46}{space 3}0.002{col 54}{space 4} .2237763{col 67}{space 3}  .973227
+{txt}{space 9}IL  {c |}{col 14}{res}{space 2} 1.502813{col 26}{space 2} .1681494{col 37}{space 1}    8.94{col 46}{space 3}0.000{col 54}{space 4} 1.173117{col 67}{space 3} 1.832509
+{txt}{space 9}IN  {c |}{col 14}{res}{space 2} 1.105526{col 26}{space 2} .1701604{col 37}{space 1}    6.50{col 46}{space 3}0.000{col 54}{space 4} .7718874{col 67}{space 3} 1.439165
+{txt}{space 9}KS  {c |}{col 14}{res}{space 2} 1.417339{col 26}{space 2} .1676168{col 37}{space 1}    8.46{col 46}{space 3}0.000{col 54}{space 4} 1.088687{col 67}{space 3}  1.74599
+{txt}{space 9}KY  {c |}{col 14}{res}{space 2} .5064077{col 26}{space 2}  .165334{col 37}{space 1}    3.06{col 46}{space 3}0.002{col 54}{space 4}  .182232{col 67}{space 3} .8305834
+{txt}{space 9}LA  {c |}{col 14}{res}{space 2} 1.775201{col 26}{space 2} .1788592{col 37}{space 1}    9.93{col 46}{space 3}0.000{col 54}{space 4} 1.424506{col 67}{space 3} 2.125896
+{txt}{space 9}MA  {c |}{col 14}{res}{space 2}  1.29504{col 26}{space 2} .2600339{col 37}{space 1}    4.98{col 46}{space 3}0.000{col 54}{space 4} .7851829{col 67}{space 3} 1.804896
+{txt}{space 9}MD  {c |}{col 14}{res}{space 2} .7342397{col 26}{space 2} .2204916{col 37}{space 1}    3.33{col 46}{space 3}0.001{col 54}{space 4} .3019147{col 67}{space 3} 1.166565
+{txt}{space 9}ME  {c |}{col 14}{res}{space 2}  .041649{col 26}{space 2} .2488319{col 37}{space 1}    0.17{col 46}{space 3}0.867{col 54}{space 4}-.4462436{col 67}{space 3} .5295416
+{txt}{space 9}MI  {c |}{col 14}{res}{space 2} .9987714{col 26}{space 2} .1723573{col 37}{space 1}    5.79{col 46}{space 3}0.000{col 54}{space 4} .6608249{col 67}{space 3} 1.336718
+{txt}{space 9}MN  {c |}{col 14}{res}{space 2} .8836709{col 26}{space 2} .1713283{col 37}{space 1}    5.16{col 46}{space 3}0.000{col 54}{space 4}  .547742{col 67}{space 3}   1.2196
+{txt}{space 9}MO  {c |}{col 14}{res}{space 2} .7536117{col 26}{space 2} .1660321{col 37}{space 1}    4.54{col 46}{space 3}0.000{col 54}{space 4} .4280673{col 67}{space 3} 1.079156
+{txt}{space 9}MS  {c |}{col 14}{res}{space 2} 1.942501{col 26}{space 2} .1726292{col 37}{space 1}   11.25{col 46}{space 3}0.000{col 54}{space 4} 1.604021{col 67}{space 3} 2.280981
+{txt}{space 9}MT  {c |}{col 14}{res}{space 2} 1.266062{col 26}{space 2} .1827996{col 37}{space 1}    6.93{col 46}{space 3}0.000{col 54}{space 4} .9076407{col 67}{space 3} 1.624483
+{txt}{space 9}NC  {c |}{col 14}{res}{space 2} .6646922{col 26}{space 2} .1685212{col 37}{space 1}    3.94{col 46}{space 3}0.000{col 54}{space 4} .3342673{col 67}{space 3} .9951172
+{txt}{space 9}ND  {c |}{col 14}{res}{space 2} 2.035894{col 26}{space 2} .1845563{col 37}{space 1}   11.03{col 46}{space 3}0.000{col 54}{space 4} 1.674029{col 67}{space 3}  2.39776
+{txt}{space 9}NE  {c |}{col 14}{res}{space 2} .8473879{col 26}{space 2}  .169941{col 37}{space 1}    4.99{col 46}{space 3}0.000{col 54}{space 4} .5141791{col 67}{space 3} 1.180597
+{txt}{space 9}NH  {c |}{col 14}{res}{space 2} .2259297{col 26}{space 2} .2930165{col 37}{space 1}    0.77{col 46}{space 3}0.441{col 54}{space 4}-.3485971{col 67}{space 3} .8004565
+{txt}{space 9}NJ  {c |}{col 14}{res}{space 2} 1.786382{col 26}{space 2} .2289471{col 37}{space 1}    7.80{col 46}{space 3}0.000{col 54}{space 4} 1.337478{col 67}{space 3} 2.235286
+{txt}{space 9}NM  {c |}{col 14}{res}{space 2} 1.166861{col 26}{space 2} .2033755{col 37}{space 1}    5.74{col 46}{space 3}0.000{col 54}{space 4} .7680957{col 67}{space 3} 1.565625
+{txt}{space 9}NV  {c |}{col 14}{res}{space 2} .6206893{col 26}{space 2} .2440699{col 37}{space 1}    2.54{col 46}{space 3}0.011{col 54}{space 4} .1421337{col 67}{space 3} 1.099245
+{txt}{space 9}NY  {c |}{col 14}{res}{space 2} .7903149{col 26}{space 2} .1797565{col 37}{space 1}    4.40{col 46}{space 3}0.000{col 54}{space 4} .4378606{col 67}{space 3} 1.142769
+{txt}{space 9}OH  {c |}{col 14}{res}{space 2} .7226846{col 26}{space 2} .1710848{col 37}{space 1}    4.22{col 46}{space 3}0.000{col 54}{space 4} .3872332{col 67}{space 3} 1.058136
+{txt}{space 9}OK  {c |}{col 14}{res}{space 2} .5617398{col 26}{space 2} .1740874{col 37}{space 1}    3.23{col 46}{space 3}0.001{col 54}{space 4} .2204011{col 67}{space 3} .9030786
+{txt}{space 9}OR  {c |}{col 14}{res}{space 2} .1964182{col 26}{space 2} .1993725{col 37}{space 1}    0.99{col 46}{space 3}0.325{col 54}{space 4}-.1944978{col 67}{space 3} .5873341
+{txt}{space 9}PA  {c |}{col 14}{res}{space 2} 1.097692{col 26}{space 2} .1776061{col 37}{space 1}    6.18{col 46}{space 3}0.000{col 54}{space 4} .7494535{col 67}{space 3}  1.44593
+{txt}{space 9}RI  {c |}{col 14}{res}{space 2} .9881816{col 26}{space 2} .3869138{col 37}{space 1}    2.55{col 46}{space 3}0.011{col 54}{space 4} .2295474{col 67}{space 3} 1.746816
+{txt}{space 9}SC  {c |}{col 14}{res}{space 2} 1.201939{col 26}{space 2} .1894574{col 37}{space 1}    6.34{col 46}{space 3}0.000{col 54}{space 4} .8304636{col 67}{space 3} 1.573414
+{txt}{space 9}SD  {c |}{col 14}{res}{space 2} 2.199924{col 26}{space 2} .1780121{col 37}{space 1}   12.36{col 46}{space 3}0.000{col 54}{space 4}  1.85089{col 67}{space 3} 2.548958
+{txt}{space 9}TN  {c |}{col 14}{res}{space 2} 1.202763{col 26}{space 2} .1695153{col 37}{space 1}    7.10{col 46}{space 3}0.000{col 54}{space 4} .8703891{col 67}{space 3} 1.535137
+{txt}{space 9}TX  {c |}{col 14}{res}{space 2}  1.46138{col 26}{space 2}  .156616{col 37}{space 1}    9.33{col 46}{space 3}0.000{col 54}{space 4} 1.154298{col 67}{space 3} 1.768462
+{txt}{space 9}UT  {c |}{col 14}{res}{space 2}-.0872647{col 26}{space 2} .2098335{col 37}{space 1}   -0.42{col 46}{space 3}0.678{col 54}{space 4}-.4986918{col 67}{space 3} .3241625
+{txt}{space 9}VA  {c |}{col 14}{res}{space 2} .5885828{col 26}{space 2} .1637538{col 37}{space 1}    3.59{col 46}{space 3}0.000{col 54}{space 4} .2675055{col 67}{space 3} .9096601
+{txt}{space 9}VT  {c |}{col 14}{res}{space 2}-.0714616{col 26}{space 2} .2600339{col 37}{space 1}   -0.27{col 46}{space 3}0.783{col 54}{space 4}-.5813183{col 67}{space 3} .4383952
+{txt}{space 9}WA  {c |}{col 14}{res}{space 2} .2170263{col 26}{space 2} .1959214{col 37}{space 1}    1.11{col 46}{space 3}0.268{col 54}{space 4}-.1671231{col 67}{space 3} .6011757
+{txt}{space 9}WI  {c |}{col 14}{res}{space 2} .8947376{col 26}{space 2} .1757334{col 37}{space 1}    5.09{col 46}{space 3}0.000{col 54}{space 4} .5501717{col 67}{space 3} 1.239304
+{txt}{space 9}WV  {c |}{col 14}{res}{space 2} .5880008{col 26}{space 2} .1833657{col 37}{space 1}    3.21{col 46}{space 3}0.001{col 54}{space 4} .2284698{col 67}{space 3} .9475317
+{txt}{space 9}WY  {c |}{col 14}{res}{space 2}  .679823{col 26}{space 2}  .223099{col 37}{space 1}    3.05{col 46}{space 3}0.002{col 54}{space 4} .2423858{col 67}{space 3}  1.11726
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .2334122{col 26}{space 2} .1483747{col 37}{space 1}    1.57{col 46}{space 3}0.116{col 54}{space 4}-.0575107{col 67}{space 3} .5243351
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. local SSRes_reduced = e(rss)
+
+. 
+. 
+. * COVID-19 mortality explained by within-state SVI + state 
+
+. regress  deaths_per_thous i.ST ST##c.svi
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     3,140
+{txt}{hline 13}{c +}{hline 34}   F(99, 3040)     = {res}    16.51
+{txt}       Model {c |} {res} 951.678236        99  9.61291147   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 1769.85534     3,040  .582189256   {txt}R-squared       ={res}    0.3497
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.3285
+{txt}       Total {c |} {res} 2721.53357     3,139  .867006555   {txt}Root MSE        =   {res} .76301
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}deaths_per~s{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}ST {c |}
+{space 9}AL  {c |}{col 14}{res}{space 2} .1681157{col 26}{space 2} .4936217{col 37}{space 1}    0.34{col 46}{space 3}0.733{col 54}{space 4}-.7997504{col 67}{space 3} 1.135982
+{txt}{space 9}AR  {c |}{col 14}{res}{space 2} 1.412855{col 26}{space 2} .4851737{col 37}{space 1}    2.91{col 46}{space 3}0.004{col 54}{space 4} .4615529{col 67}{space 3} 2.364156
+{txt}{space 9}AZ  {c |}{col 14}{res}{space 2}-1.592291{col 26}{space 2} 1.212455{col 37}{space 1}   -1.31{col 46}{space 3}0.189{col 54}{space 4}-3.969605{col 67}{space 3} .7850241
+{txt}{space 9}CA  {c |}{col 14}{res}{space 2} .1192405{col 26}{space 2}  .435114{col 37}{space 1}    0.27{col 46}{space 3}0.784{col 54}{space 4} -.733907{col 67}{space 3}  .972388
+{txt}{space 9}CO  {c |}{col 14}{res}{space 2} .3636076{col 26}{space 2} .3800032{col 37}{space 1}    0.96{col 46}{space 3}0.339{col 54}{space 4}-.3814816{col 67}{space 3} 1.108697
+{txt}{space 9}CT  {c |}{col 14}{res}{space 2} .9748618{col 26}{space 2} .6419383{col 37}{space 1}    1.52{col 46}{space 3}0.129{col 54}{space 4}-.2838152{col 67}{space 3} 2.233539
+{txt}{space 9}DE  {c |}{col 14}{res}{space 2} 1.116322{col 26}{space 2} 1.494057{col 37}{space 1}    0.75{col 46}{space 3}0.455{col 54}{space 4}-1.813142{col 67}{space 3} 4.045786
+{txt}{space 9}FL  {c |}{col 14}{res}{space 2} .4856695{col 26}{space 2} .4413588{col 37}{space 1}    1.10{col 46}{space 3}0.271{col 54}{space 4}-.3797225{col 67}{space 3} 1.351061
+{txt}{space 9}GA  {c |}{col 14}{res}{space 2} .3825186{col 26}{space 2} .3907054{col 37}{space 1}    0.98{col 46}{space 3}0.328{col 54}{space 4}-.3835549{col 67}{space 3} 1.148592
+{txt}{space 9}HI  {c |}{col 14}{res}{space 2}-.3181501{col 26}{space 2} 1.476312{col 37}{space 1}   -0.22{col 46}{space 3}0.829{col 54}{space 4} -3.21282{col 67}{space 3}  2.57652
+{txt}{space 9}IA  {c |}{col 14}{res}{space 2} 1.655101{col 26}{space 2} .3690662{col 37}{space 1}    4.48{col 46}{space 3}0.000{col 54}{space 4} .9314562{col 67}{space 3} 2.378745
+{txt}{space 9}ID  {c |}{col 14}{res}{space 2} .2942701{col 26}{space 2} .4318318{col 37}{space 1}    0.68{col 46}{space 3}0.496{col 54}{space 4}-.5524418{col 67}{space 3} 1.140982
+{txt}{space 9}IL  {c |}{col 14}{res}{space 2}  1.50427{col 26}{space 2} .3767625{col 37}{space 1}    3.99{col 46}{space 3}0.000{col 54}{space 4} .7655346{col 67}{space 3} 2.243005
+{txt}{space 9}IN  {c |}{col 14}{res}{space 2} 1.208551{col 26}{space 2} .3814613{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} .4606027{col 67}{space 3} 1.956499
+{txt}{space 9}KS  {c |}{col 14}{res}{space 2} 2.093097{col 26}{space 2} .3714292{col 37}{space 1}    5.64{col 46}{space 3}0.000{col 54}{space 4} 1.364819{col 67}{space 3} 2.821375
+{txt}{space 9}KY  {c |}{col 14}{res}{space 2} .4787509{col 26}{space 2} .4082179{col 37}{space 1}    1.17{col 46}{space 3}0.241{col 54}{space 4}-.3216601{col 67}{space 3} 1.279162
+{txt}{space 9}LA  {c |}{col 14}{res}{space 2} .2674737{col 26}{space 2} .5834518{col 37}{space 1}    0.46{col 46}{space 3}0.647{col 54}{space 4}-.8765262{col 67}{space 3} 1.411474
+{txt}{space 9}MA  {c |}{col 14}{res}{space 2}  .789915{col 26}{space 2} .4895003{col 37}{space 1}    1.61{col 46}{space 3}0.107{col 54}{space 4}  -.16987{col 67}{space 3}   1.7497
+{txt}{space 9}MD  {c |}{col 14}{res}{space 2} .7285643{col 26}{space 2} .4353228{col 37}{space 1}    1.67{col 46}{space 3}0.094{col 54}{space 4}-.1249926{col 67}{space 3} 1.582121
+{txt}{space 9}ME  {c |}{col 14}{res}{space 2} .1706729{col 26}{space 2} .5058098{col 37}{space 1}    0.34{col 46}{space 3}0.736{col 54}{space 4} -.821091{col 67}{space 3} 1.162437
+{txt}{space 9}MI  {c |}{col 14}{res}{space 2} .9226202{col 26}{space 2} .3939357{col 37}{space 1}    2.34{col 46}{space 3}0.019{col 54}{space 4} .1502128{col 67}{space 3} 1.695028
+{txt}{space 9}MN  {c |}{col 14}{res}{space 2} .8800606{col 26}{space 2} .3754729{col 37}{space 1}    2.34{col 46}{space 3}0.019{col 54}{space 4} .1438542{col 67}{space 3} 1.616267
+{txt}{space 9}MO  {c |}{col 14}{res}{space 2} .7356347{col 26}{space 2} .3875687{col 37}{space 1}    1.90{col 46}{space 3}0.058{col 54}{space 4}-.0242885{col 67}{space 3} 1.495558
+{txt}{space 9}MS  {c |}{col 14}{res}{space 2} .5338927{col 26}{space 2} .5276667{col 37}{space 1}    1.01{col 46}{space 3}0.312{col 54}{space 4}-.5007269{col 67}{space 3} 1.568512
+{txt}{space 9}MT  {c |}{col 14}{res}{space 2} .9793492{col 26}{space 2} .3784506{col 37}{space 1}    2.59{col 46}{space 3}0.010{col 54}{space 4} .2373041{col 67}{space 3} 1.721394
+{txt}{space 9}NC  {c |}{col 14}{res}{space 2} .0703529{col 26}{space 2} .4147438{col 37}{space 1}    0.17{col 46}{space 3}0.865{col 54}{space 4}-.7428539{col 67}{space 3} .8835597
+{txt}{space 9}ND  {c |}{col 14}{res}{space 2} 2.271308{col 26}{space 2} .3734451{col 37}{space 1}    6.08{col 46}{space 3}0.000{col 54}{space 4} 1.539077{col 67}{space 3} 3.003538
+{txt}{space 9}NE  {c |}{col 14}{res}{space 2} .8518296{col 26}{space 2} .3652727{col 37}{space 1}    2.33{col 46}{space 3}0.020{col 54}{space 4} .1356231{col 67}{space 3} 1.568036
+{txt}{space 9}NH  {c |}{col 14}{res}{space 2} .3692782{col 26}{space 2}  .521329{col 37}{space 1}    0.71{col 46}{space 3}0.479{col 54}{space 4} -.652915{col 67}{space 3} 1.391471
+{txt}{space 9}NJ  {c |}{col 14}{res}{space 2} 1.620833{col 26}{space 2}  .457562{col 37}{space 1}    3.54{col 46}{space 3}0.000{col 54}{space 4} .7236711{col 67}{space 3} 2.517996
+{txt}{space 9}NM  {c |}{col 14}{res}{space 2}-.5632584{col 26}{space 2} .5874505{col 37}{space 1}   -0.96{col 46}{space 3}0.338{col 54}{space 4}-1.715099{col 67}{space 3} .5885821
+{txt}{space 9}NV  {c |}{col 14}{res}{space 2}-.0187297{col 26}{space 2} .5625203{col 37}{space 1}   -0.03{col 46}{space 3}0.973{col 54}{space 4}-1.121688{col 67}{space 3} 1.084229
+{txt}{space 9}NY  {c |}{col 14}{res}{space 2} .3656551{col 26}{space 2} .4324099{col 37}{space 1}    0.85{col 46}{space 3}0.398{col 54}{space 4}-.4821903{col 67}{space 3}   1.2135
+{txt}{space 9}OH  {c |}{col 14}{res}{space 2} .9691088{col 26}{space 2} .3858219{col 37}{space 1}    2.51{col 46}{space 3}0.012{col 54}{space 4} .2126106{col 67}{space 3} 1.725607
+{txt}{space 9}OK  {c |}{col 14}{res}{space 2} .5994442{col 26}{space 2} .4332543{col 37}{space 1}    1.38{col 46}{space 3}0.167{col 54}{space 4}-.2500568{col 67}{space 3} 1.448945
+{txt}{space 9}OR  {c |}{col 14}{res}{space 2}-.1350071{col 26}{space 2} .5199781{col 37}{space 1}   -0.26{col 46}{space 3}0.795{col 54}{space 4}-1.154551{col 67}{space 3} .8845371
+{txt}{space 9}PA  {c |}{col 14}{res}{space 2}  1.07147{col 26}{space 2}  .412813{col 37}{space 1}    2.60{col 46}{space 3}0.009{col 54}{space 4} .2620492{col 67}{space 3} 1.880891
+{txt}{space 9}RI  {c |}{col 14}{res}{space 2} .6702891{col 26}{space 2} .6022826{col 37}{space 1}    1.11{col 46}{space 3}0.266{col 54}{space 4}-.5106333{col 67}{space 3} 1.851212
+{txt}{space 9}SC  {c |}{col 14}{res}{space 2}  .077773{col 26}{space 2}  .567634{col 37}{space 1}    0.14{col 46}{space 3}0.891{col 54}{space 4}-1.035212{col 67}{space 3} 1.190758
+{txt}{space 9}SD  {c |}{col 14}{res}{space 2} 2.312745{col 26}{space 2}  .374396{col 37}{space 1}    6.18{col 46}{space 3}0.000{col 54}{space 4}  1.57865{col 67}{space 3}  3.04684
+{txt}{space 9}TN  {c |}{col 14}{res}{space 2}  .771844{col 26}{space 2} .4306097{col 37}{space 1}    1.79{col 46}{space 3}0.073{col 54}{space 4}-.0724716{col 67}{space 3}  1.61616
+{txt}{space 9}TX  {c |}{col 14}{res}{space 2} .6443922{col 26}{space 2} .3780807{col 37}{space 1}    1.70{col 46}{space 3}0.088{col 54}{space 4}-.0969274{col 67}{space 3} 1.385712
+{txt}{space 9}UT  {c |}{col 14}{res}{space 2}-.2463494{col 26}{space 2} .4381949{col 37}{space 1}   -0.56{col 46}{space 3}0.574{col 54}{space 4}-1.105538{col 67}{space 3} .6128389
+{txt}{space 9}VA  {c |}{col 14}{res}{space 2} .2060529{col 26}{space 2} .3680264{col 37}{space 1}    0.56{col 46}{space 3}0.576{col 54}{space 4}-.5155529{col 67}{space 3} .9276588
+{txt}{space 9}VT  {c |}{col 14}{res}{space 2} .1003507{col 26}{space 2} .5608116{col 37}{space 1}    0.18{col 46}{space 3}0.858{col 54}{space 4}-.9992576{col 67}{space 3} 1.199959
+{txt}{space 9}WA  {c |}{col 14}{res}{space 2} .1936052{col 26}{space 2} .4467713{col 37}{space 1}    0.43{col 46}{space 3}0.665{col 54}{space 4}-.6823992{col 67}{space 3}  1.06961
+{txt}{space 9}WI  {c |}{col 14}{res}{space 2} .8326069{col 26}{space 2}  .379517{col 37}{space 1}    2.19{col 46}{space 3}0.028{col 54}{space 4}  .088471{col 67}{space 3} 1.576743
+{txt}{space 9}WV  {c |}{col 14}{res}{space 2} .8400009{col 26}{space 2} .4602186{col 37}{space 1}    1.83{col 46}{space 3}0.068{col 54}{space 4}-.0623702{col 67}{space 3} 1.742372
+{txt}{space 9}WY  {c |}{col 14}{res}{space 2} .4725617{col 26}{space 2} .4648039{col 37}{space 1}    1.02{col 46}{space 3}0.309{col 54}{space 4}   -.4388{col 67}{space 3} 1.383923
+{txt}{space 12} {c |}
+{space 9}svi {c |}{col 14}{res}{space 2} .3200585{col 26}{space 2} .5653716{col 37}{space 1}    0.57{col 46}{space 3}0.571{col 54}{space 4}-.7884908{col 67}{space 3} 1.428608
+{txt}{space 12} {c |}
+{space 4}ST#c.svi {c |}
+{space 9}AL  {c |}{col 14}{res}{space 2}  1.34434{col 26}{space 2} .7419243{col 37}{space 1}    1.81{col 46}{space 3}0.070{col 54}{space 4}-.1103841{col 67}{space 3} 2.799064
+{txt}{space 9}AR  {c |}{col 14}{res}{space 2}-.1282289{col 26}{space 2} .7255888{col 37}{space 1}   -0.18{col 46}{space 3}0.860{col 54}{space 4}-1.550923{col 67}{space 3} 1.294466
+{txt}{space 9}AZ  {c |}{col 14}{res}{space 2}  3.71254{col 26}{space 2} 1.466296{col 37}{space 1}    2.53{col 46}{space 3}0.011{col 54}{space 4} .8375075{col 67}{space 3} 6.587572
+{txt}{space 9}CA  {c |}{col 14}{res}{space 2} .2749091{col 26}{space 2} .6815277{col 37}{space 1}    0.40{col 46}{space 3}0.687{col 54}{space 4}-1.061393{col 67}{space 3} 1.611211
+{txt}{space 9}CO  {c |}{col 14}{res}{space 2} .9562208{col 26}{space 2} .6412169{col 37}{space 1}    1.49{col 46}{space 3}0.136{col 54}{space 4}-.3010417{col 67}{space 3} 2.213483
+{txt}{space 9}CT  {c |}{col 14}{res}{space 2} .9863025{col 26}{space 2} 1.578823{col 37}{space 1}    0.62{col 46}{space 3}0.532{col 54}{space 4}-2.109367{col 67}{space 3} 4.081972
+{txt}{space 9}DE  {c |}{col 14}{res}{space 2}-.5346538{col 26}{space 2} 2.817692{col 37}{space 1}   -0.19{col 46}{space 3}0.850{col 54}{space 4}-6.059427{col 67}{space 3}  4.99012
+{txt}{space 9}FL  {c |}{col 14}{res}{space 2} .6995818{col 26}{space 2} .6849081{col 37}{space 1}    1.02{col 46}{space 3}0.307{col 54}{space 4}-.6433482{col 67}{space 3} 2.042512
+{txt}{space 9}GA  {c |}{col 14}{res}{space 2} 1.298116{col 26}{space 2}  .612774{col 37}{space 1}    2.12{col 46}{space 3}0.034{col 54}{space 4} .0966223{col 67}{space 3} 2.499609
+{txt}{space 9}HI  {c |}{col 14}{res}{space 2} .6085752{col 26}{space 2} 3.424385{col 37}{space 1}    0.18{col 46}{space 3}0.859{col 54}{space 4}-6.105769{col 67}{space 3} 7.322919
+{txt}{space 9}IA  {c |}{col 14}{res}{space 2}-.3778061{col 26}{space 2} .6945906{col 37}{space 1}   -0.54{col 46}{space 3}0.587{col 54}{space 4}-1.739721{col 67}{space 3} .9841086
+{txt}{space 9}ID  {c |}{col 14}{res}{space 2} .7611159{col 26}{space 2} .7617743{col 37}{space 1}    1.00{col 46}{space 3}0.318{col 54}{space 4} -.732529{col 67}{space 3} 2.254761
+{txt}{space 9}IL  {c |}{col 14}{res}{space 2} .1516396{col 26}{space 2} .6528781{col 37}{space 1}    0.23{col 46}{space 3}0.816{col 54}{space 4}-1.128488{col 67}{space 3} 1.431767
+{txt}{space 9}IN  {c |}{col 14}{res}{space 2}-.1091264{col 26}{space 2} .6758628{col 37}{space 1}   -0.16{col 46}{space 3}0.872{col 54}{space 4}-1.434321{col 67}{space 3} 1.216068
+{txt}{space 9}KS  {c |}{col 14}{res}{space 2}-1.866651{col 26}{space 2} .6562791{col 37}{space 1}   -2.84{col 46}{space 3}0.004{col 54}{space 4}-3.153446{col 67}{space 3} -.579855
+{txt}{space 9}KY  {c |}{col 14}{res}{space 2} .0182066{col 26}{space 2} .6542627{col 37}{space 1}    0.03{col 46}{space 3}0.978{col 54}{space 4}-1.264636{col 67}{space 3} 1.301049
+{txt}{space 9}LA  {c |}{col 14}{res}{space 2}  1.81981{col 26}{space 2} .8110597{col 37}{space 1}    2.24{col 46}{space 3}0.025{col 54}{space 4} .2295286{col 67}{space 3} 3.410091
+{txt}{space 9}MA  {c |}{col 14}{res}{space 2} 1.758921{col 26}{space 2} 1.014523{col 37}{space 1}    1.73{col 46}{space 3}0.083{col 54}{space 4}-.2302985{col 67}{space 3} 3.748141
+{txt}{space 9}MD  {c |}{col 14}{res}{space 2} .1892196{col 26}{space 2} .8081673{col 37}{space 1}    0.23{col 46}{space 3}0.815{col 54}{space 4} -1.39539{col 67}{space 3} 1.773829
+{txt}{space 9}ME  {c |}{col 14}{res}{space 2}-.1661614{col 26}{space 2} 1.105767{col 37}{space 1}   -0.15{col 46}{space 3}0.881{col 54}{space 4}-2.334288{col 67}{space 3} 2.001966
+{txt}{space 9}MI  {c |}{col 14}{res}{space 2} .2886718{col 26}{space 2} .6879731{col 37}{space 1}    0.42{col 46}{space 3}0.675{col 54}{space 4}-1.060268{col 67}{space 3} 1.637611
+{txt}{space 9}MN  {c |}{col 14}{res}{space 2}  .358961{col 26}{space 2} .7083401{col 37}{space 1}    0.51{col 46}{space 3}0.612{col 54}{space 4}-1.029913{col 67}{space 3} 1.747835
+{txt}{space 9}MO  {c |}{col 14}{res}{space 2} .0786217{col 26}{space 2} .6463291{col 37}{space 1}    0.12{col 46}{space 3}0.903{col 54}{space 4}-1.188665{col 67}{space 3} 1.345908
+{txt}{space 9}MS  {c |}{col 14}{res}{space 2}  1.64821{col 26}{space 2} .7419377{col 37}{space 1}    2.22{col 46}{space 3}0.026{col 54}{space 4} .1934599{col 67}{space 3} 3.102961
+{txt}{space 9}MT  {c |}{col 14}{res}{space 2} 1.338783{col 26}{space 2} .6850018{col 37}{space 1}    1.95{col 46}{space 3}0.051{col 54}{space 4}-.0043302{col 67}{space 3} 2.681897
+{txt}{space 9}NC  {c |}{col 14}{res}{space 2} .8502891{col 26}{space 2} .6503294{col 37}{space 1}    1.31{col 46}{space 3}0.191{col 54}{space 4}-.4248408{col 67}{space 3} 2.125419
+{txt}{space 9}ND  {c |}{col 14}{res}{space 2}-.6527596{col 26}{space 2} .7666411{col 37}{space 1}   -0.85{col 46}{space 3}0.395{col 54}{space 4}-2.155947{col 67}{space 3} .8504279
+{txt}{space 9}NE  {c |}{col 14}{res}{space 2} .5489705{col 26}{space 2} .6863324{col 37}{space 1}    0.80{col 46}{space 3}0.424{col 54}{space 4}-.7967521{col 67}{space 3} 1.894693
+{txt}{space 9}NH  {c |}{col 14}{res}{space 2} -.102213{col 26}{space 2} 1.902275{col 37}{space 1}   -0.05{col 46}{space 3}0.957{col 54}{space 4}-3.832088{col 67}{space 3} 3.627662
+{txt}{space 9}NJ  {c |}{col 14}{res}{space 2} .5051016{col 26}{space 2} .8159529{col 37}{space 1}    0.62{col 46}{space 3}0.536{col 54}{space 4}-1.094774{col 67}{space 3} 2.104977
+{txt}{space 9}NM  {c |}{col 14}{res}{space 2} 2.108227{col 26}{space 2} .8061233{col 37}{space 1}    2.62{col 46}{space 3}0.009{col 54}{space 4} .5276246{col 67}{space 3} 3.688828
+{txt}{space 9}NV  {c |}{col 14}{res}{space 2} 1.146694{col 26}{space 2} .9144938{col 37}{space 1}    1.25{col 46}{space 3}0.210{col 54}{space 4} -.646395{col 67}{space 3} 2.939783
+{txt}{space 9}NY  {c |}{col 14}{res}{space 2} .9699269{col 26}{space 2} .7598389{col 37}{space 1}    1.28{col 46}{space 3}0.202{col 54}{space 4}-.5199231{col 67}{space 3} 2.459777
+{txt}{space 9}OH  {c |}{col 14}{res}{space 2}-.4875121{col 26}{space 2} .6738126{col 37}{space 1}   -0.72{col 46}{space 3}0.469{col 54}{space 4}-1.808687{col 67}{space 3} .8336623
+{txt}{space 9}OK  {c |}{col 14}{res}{space 2}-.1007617{col 26}{space 2} .6785676{col 37}{space 1}   -0.15{col 46}{space 3}0.882{col 54}{space 4} -1.43126{col 67}{space 3} 1.229736
+{txt}{space 9}OR  {c |}{col 14}{res}{space 2} .5253182{col 26}{space 2} .8269502{col 37}{space 1}    0.64{col 46}{space 3}0.525{col 54}{space 4} -1.09612{col 67}{space 3} 2.146756
+{txt}{space 9}PA  {c |}{col 14}{res}{space 2} .2330574{col 26}{space 2} .7830072{col 37}{space 1}    0.30{col 46}{space 3}0.766{col 54}{space 4} -1.30222{col 67}{space 3} 1.768335
+{txt}{space 9}RI  {c |}{col 14}{res}{space 2} 1.590475{col 26}{space 2} 1.471718{col 37}{space 1}    1.08{col 46}{space 3}0.280{col 54}{space 4}-1.295188{col 67}{space 3} 4.476138
+{txt}{space 9}SC  {c |}{col 14}{res}{space 2} 1.399733{col 26}{space 2} .8047445{col 37}{space 1}    1.74{col 46}{space 3}0.082{col 54}{space 4}-.1781659{col 67}{space 3} 2.977631
+{txt}{space 9}SD  {c |}{col 14}{res}{space 2}-.1109015{col 26}{space 2} .6484601{col 37}{space 1}   -0.17{col 46}{space 3}0.864{col 54}{space 4}-1.382366{col 67}{space 3} 1.160563
+{txt}{space 9}TN  {c |}{col 14}{res}{space 2} .7249778{col 26}{space 2} .7002349{col 37}{space 1}    1.04{col 46}{space 3}0.301{col 54}{space 4} -.648004{col 67}{space 3}  2.09796
+{txt}{space 9}TX  {c |}{col 14}{res}{space 2} 1.152267{col 26}{space 2} .6021023{col 37}{space 1}    1.91{col 46}{space 3}0.056{col 54}{space 4}-.0283019{col 67}{space 3} 2.332836
+{txt}{space 9}UT  {c |}{col 14}{res}{space 2}  .732581{col 26}{space 2} .9005821{col 37}{space 1}    0.81{col 46}{space 3}0.416{col 54}{space 4}-1.033231{col 67}{space 3} 2.498392
+{txt}{space 9}VA  {c |}{col 14}{res}{space 2} .9898576{col 26}{space 2} .6117836{col 37}{space 1}    1.62{col 46}{space 3}0.106{col 54}{space 4}-.2096939{col 67}{space 3} 2.189409
+{txt}{space 9}VT  {c |}{col 14}{res}{space 2}-.2795668{col 26}{space 2} 2.045777{col 37}{space 1}   -0.14{col 46}{space 3}0.891{col 54}{space 4}-4.290814{col 67}{space 3}  3.73168
+{txt}{space 9}WA  {c |}{col 14}{res}{space 2} .0719333{col 26}{space 2} .7459782{col 37}{space 1}    0.10{col 46}{space 3}0.923{col 54}{space 4}-1.390739{col 67}{space 3} 1.534606
+{txt}{space 9}WI  {c |}{col 14}{res}{space 2} .6851386{col 26}{space 2} .7600396{col 37}{space 1}    0.90{col 46}{space 3}0.367{col 54}{space 4} -.805105{col 67}{space 3} 2.175382
+{txt}{space 9}WV  {c |}{col 14}{res}{space 2}-.4588289{col 26}{space 2} .7850587{col 37}{space 1}   -0.58{col 46}{space 3}0.559{col 54}{space 4}-1.998129{col 67}{space 3} 1.080471
+{txt}{space 9}WY  {c |}{col 14}{res}{space 2} 1.208829{col 26}{space 2} 1.186354{col 37}{space 1}    1.02{col 46}{space 3}0.308{col 54}{space 4}-1.117309{col 67}{space 3} 3.534967
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .0535724{col 26}{space 2} .3478452{col 37}{space 1}    0.15{col 46}{space 3}0.878{col 54}{space 4}-.6284632{col 67}{space 3} .7356081
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. local SSRes_full_svi = e(rss)
+
+. 
+. 
+. * Proportion of within-state variance in COVID-19 mortality explained by SVI
+
+. di (`SSRes_reduced' - `SSRes_full_svi')/`SSRes_reduced'
+{res}.10314714
+
+{com}. 
+. 
+. gen svi_state_association = .
+{txt}(3,141 missing values generated)
+
+{com}. forvalues i = 1/50{c -(}
+{txt}  2{com}. qui lincom svi + `i'.ST#svi
+{txt}  3{com}. local cur_est = r(estimate)
+{txt}  4{com}. qui replace svi_state_association = `cur_est'/10 if ST == `i'
+{txt}  5{com}. {c )-}
+
+. 
+. gen state_r_squared_svi = .
+{txt}(3,141 missing values generated)
+
+{com}. forvalues i = 1/50{c -(}
+{txt}  2{com}. qui regress deaths_per_thous svi if ST == `i'
+{txt}  3{com}. local r_sq = e(r2)
+{txt}  4{com}. qui replace state_r_squared_svi = `r_sq' if ST == `i'
+{txt}  5{com}. {c )-}
+
+. 
+. summarize svi_state_association if state_flag ==1, detail
+
+                    {txt}svi_state_association
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}-.1546592      -.1546592
+{txt} 5%    {res}-.0214595      -.0332701
+{txt}10%    {res}-.0098259      -.0214595       {txt}Obs         {res}         50
+{txt}25%    {res} .0219297      -.0167454       {txt}Sum of Wgt. {res}         50
+
+{txt}50%    {res} .0857203                      {txt}Mean          {res} .0887278
+                        {txt}Largest       Std. Dev.     {res} .0890323
+{txt}75%    {res} .1466752        .207898
+{txt}90%    {res} .1939401       .2139868       {txt}Variance      {res} .0079267
+{txt}95%    {res} .2139868       .2428285       {txt}Skewness      {res} .5727789
+{txt}99%    {res} .4032598       .4032598       {txt}Kurtosis      {res} 5.191095
+
+{com}. 
+. sort state_r_squared_svi
+
+. format state_r_squared_svi %12.4f
+
+. list state state_r_squared_svi if state_flag ==1
+{txt}
+      {c TLC}{hline 7}{c -}{hline 10}{c TRC}
+      {c |} {res}state   state_~i {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+  46. {c |} {res}   IA     0.0002 {txt}{c |}
+ 110. {c |} {res}   VT     0.0006 {txt}{c |}
+ 151. {c |} {res}   SD     0.0015 {txt}{c |}
+ 203. {c |} {res}   ND     0.0020 {txt}{c |}
+ 265. {c |} {res}   WV     0.0023 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+ 345. {c |} {res}   AR     0.0026 {txt}{c |}
+ 397. {c |} {res}   OH     0.0054 {txt}{c |}
+ 460. {c |} {res}   NH     0.0057 {txt}{c |}
+ 476. {c |} {res}   IN     0.0097 {txt}{c |}
+ 654. {c |} {res}   KY     0.0154 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+ 722. {c |} {res}   OK     0.0188 {txt}{c |}
+ 757. {c |} {res}   IL     0.0238 {txt}{c |}
+ 966. {c |} {res}   MO     0.0286 {txt}{c |}
+ 967. {c |} {res}   DE     0.0297 {txt}{c |}
+1007. {c |} {res}   MI     0.0341 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+1116. {c |} {res}   MN     0.0381 {txt}{c |}
+1186. {c |} {res}   PA     0.0397 {txt}{c |}
+1212. {c |} {res}   ME     0.0402 {txt}{c |}
+1234. {c |} {res}   NE     0.0415 {txt}{c |}
+1320. {c |} {res}   WI     0.0484 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+1397. {c |} {res}   AK     0.0530 {txt}{c |}
+1498. {c |} {res}   KS     0.0705 {txt}{c |}
+1535. {c |} {res}   MD     0.0913 {txt}{c |}
+1585. {c |} {res}   NY     0.1009 {txt}{c |}
+1617. {c |} {res}   WA     0.1074 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+1693. {c |} {res}   MT     0.1088 {txt}{c |}
+1710. {c |} {res}   TN     0.1129 {txt}{c |}
+2030. {c |} {res}   TX     0.1232 {txt}{c |}
+2092. {c |} {res}   FL     0.1564 {txt}{c |}
+2156. {c |} {res}   MS     0.1635 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+2241. {c |} {res}   CA     0.1663 {txt}{c |}
+2260. {c |} {res}   WY     0.1697 {txt}{c |}
+2316. {c |} {res}   LA     0.1705 {txt}{c |}
+2447. {c |} {res}   GA     0.1942 {txt}{c |}
+2510. {c |} {res}   NJ     0.1949 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+2541. {c |} {res}   AL     0.2107 {txt}{c |}
+2597. {c |} {res}   CT     0.2193 {txt}{c |}
+2610. {c |} {res}   VA     0.2214 {txt}{c |}
+2742. {c |} {res}   UT     0.2451 {txt}{c |}
+2776. {c |} {res}   CO     0.2465 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+2853. {c |} {res}   ID     0.2560 {txt}{c |}
+2875. {c |} {res}   NM     0.2754 {txt}{c |}
+2908. {c |} {res}   OR     0.3290 {txt}{c |}
+2951. {c |} {res}   NC     0.3697 {txt}{c |}
+3075. {c |} {res}   SC     0.3703 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+3091. {c |} {res}   AZ     0.4248 {txt}{c |}
+3107. {c |} {res}   NV     0.4716 {txt}{c |}
+3119. {c |} {res}   RI     0.4874 {txt}{c |}
+3127. {c |} {res}   MA     0.4970 {txt}{c |}
+3140. {c |} {res}   HI     0.8311 {txt}{c |}
+      {c BLC}{hline 7}{c -}{hline 10}{c BRC}
+
+{com}. 
+. * COVID-19 mortality explained by within-state CCVI + state 
+
+. regress  deaths_per_thous i.ST ST##c.ccvi
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     3,141
+{txt}{hline 13}{c +}{hline 34}   F(99, 3041)     = {res}    15.33
+{txt}       Model {c |} {res} 906.102583        99  9.15255135   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 1815.44624     3,041  .596989884   {txt}R-squared       ={res}    0.3329
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.3112
+{txt}       Total {c |} {res} 2721.54882     3,140  .866735293   {txt}Root MSE        =   {res} .77265
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}deaths_per~s{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}ST {c |}
+{space 9}AL  {c |}{col 14}{res}{space 2} .1876445{col 26}{space 2} .7312763{col 37}{space 1}    0.26{col 46}{space 3}0.798{col 54}{space 4}-1.246201{col 67}{space 3}  1.62149
+{txt}{space 9}AR  {c |}{col 14}{res}{space 2} 1.705659{col 26}{space 2} .4627353{col 37}{space 1}    3.69{col 46}{space 3}0.000{col 54}{space 4} .7983538{col 67}{space 3} 2.612965
+{txt}{space 9}AZ  {c |}{col 14}{res}{space 2}-1.243787{col 26}{space 2} 1.116868{col 37}{space 1}   -1.11{col 46}{space 3}0.266{col 54}{space 4}-3.433678{col 67}{space 3} .9461053
+{txt}{space 9}CA  {c |}{col 14}{res}{space 2} .0167742{col 26}{space 2} .4582834{col 37}{space 1}    0.04{col 46}{space 3}0.971{col 54}{space 4}-.8818024{col 67}{space 3} .9153508
+{txt}{space 9}CO  {c |}{col 14}{res}{space 2} .3136711{col 26}{space 2} .3897454{col 37}{space 1}    0.80{col 46}{space 3}0.421{col 54}{space 4}  -.45052{col 67}{space 3} 1.077862
+{txt}{space 9}CT  {c |}{col 14}{res}{space 2} .6766868{col 26}{space 2} .7718287{col 37}{space 1}    0.88{col 46}{space 3}0.381{col 54}{space 4} -.836672{col 67}{space 3} 2.190046
+{txt}{space 9}DE  {c |}{col 14}{res}{space 2} .5326537{col 26}{space 2} 2.225275{col 37}{space 1}    0.24{col 46}{space 3}0.811{col 54}{space 4}-3.830542{col 67}{space 3}  4.89585
+{txt}{space 9}FL  {c |}{col 14}{res}{space 2} .1712841{col 26}{space 2} .6767577{col 37}{space 1}    0.25{col 46}{space 3}0.800{col 54}{space 4}-1.155665{col 67}{space 3} 1.498233
+{txt}{space 9}GA  {c |}{col 14}{res}{space 2} .0844392{col 26}{space 2} .4455034{col 37}{space 1}    0.19{col 46}{space 3}0.850{col 54}{space 4}-.7890791{col 67}{space 3} .9579575
+{txt}{space 9}HI  {c |}{col 14}{res}{space 2}-.1720151{col 26}{space 2} 1.630289{col 37}{space 1}   -0.11{col 46}{space 3}0.916{col 54}{space 4}-3.368594{col 67}{space 3} 3.024564
+{txt}{space 9}IA  {c |}{col 14}{res}{space 2} 1.690455{col 26}{space 2}  .384899{col 37}{space 1}    4.39{col 46}{space 3}0.000{col 54}{space 4} .9357665{col 67}{space 3} 2.445144
+{txt}{space 9}ID  {c |}{col 14}{res}{space 2} .4446201{col 26}{space 2}  .409093{col 37}{space 1}    1.09{col 46}{space 3}0.277{col 54}{space 4}-.3575067{col 67}{space 3} 1.246747
+{txt}{space 9}IL  {c |}{col 14}{res}{space 2} 1.636677{col 26}{space 2} .3947965{col 37}{space 1}    4.15{col 46}{space 3}0.000{col 54}{space 4} .8625822{col 67}{space 3} 2.410772
+{txt}{space 9}IN  {c |}{col 14}{res}{space 2} 1.070947{col 26}{space 2} .4168075{col 37}{space 1}    2.57{col 46}{space 3}0.010{col 54}{space 4} .2536941{col 67}{space 3}   1.8882
+{txt}{space 9}KS  {c |}{col 14}{res}{space 2} 1.970177{col 26}{space 2}  .379727{col 37}{space 1}    5.19{col 46}{space 3}0.000{col 54}{space 4}  1.22563{col 67}{space 3} 2.714725
+{txt}{space 9}KY  {c |}{col 14}{res}{space 2} .3099008{col 26}{space 2} .4609213{col 37}{space 1}    0.67{col 46}{space 3}0.501{col 54}{space 4} -.593848{col 67}{space 3}  1.21365
+{txt}{space 9}LA  {c |}{col 14}{res}{space 2}-.2411807{col 26}{space 2} .6381719{col 37}{space 1}   -0.38{col 46}{space 3}0.706{col 54}{space 4}-1.492473{col 67}{space 3} 1.010111
+{txt}{space 9}MA  {c |}{col 14}{res}{space 2} .4869724{col 26}{space 2} .5571336{col 37}{space 1}    0.87{col 46}{space 3}0.382{col 54}{space 4}-.6054242{col 67}{space 3} 1.579369
+{txt}{space 9}MD  {c |}{col 14}{res}{space 2} .7718259{col 26}{space 2} .4701177{col 37}{space 1}    1.64{col 46}{space 3}0.101{col 54}{space 4}-.1499548{col 67}{space 3} 1.693607
+{txt}{space 9}ME  {c |}{col 14}{res}{space 2} .1090646{col 26}{space 2}  .619719{col 37}{space 1}    0.18{col 46}{space 3}0.860{col 54}{space 4}-1.106046{col 67}{space 3} 1.324175
+{txt}{space 9}MI  {c |}{col 14}{res}{space 2} .8335748{col 26}{space 2} .4148731{col 37}{space 1}    2.01{col 46}{space 3}0.045{col 54}{space 4} .0201148{col 67}{space 3} 1.647035
+{txt}{space 9}MN  {c |}{col 14}{res}{space 2} .9187656{col 26}{space 2} .3855197{col 37}{space 1}    2.38{col 46}{space 3}0.017{col 54}{space 4}   .16286{col 67}{space 3} 1.674671
+{txt}{space 9}MO  {c |}{col 14}{res}{space 2} .6060448{col 26}{space 2} .4188806{col 37}{space 1}    1.45{col 46}{space 3}0.148{col 54}{space 4} -.215273{col 67}{space 3} 1.427363
+{txt}{space 9}MS  {c |}{col 14}{res}{space 2} .9516926{col 26}{space 2} .5541863{col 37}{space 1}    1.72{col 46}{space 3}0.086{col 54}{space 4} -.134925{col 67}{space 3}  2.03831
+{txt}{space 9}MT  {c |}{col 14}{res}{space 2} .9338429{col 26}{space 2} .3819081{col 37}{space 1}    2.45{col 46}{space 3}0.015{col 54}{space 4} .1850187{col 67}{space 3} 1.682667
+{txt}{space 9}NC  {c |}{col 14}{res}{space 2}-.4220971{col 26}{space 2} .5374786{col 37}{space 1}   -0.79{col 46}{space 3}0.432{col 54}{space 4}-1.475955{col 67}{space 3} .6317611
+{txt}{space 9}ND  {c |}{col 14}{res}{space 2} 2.262393{col 26}{space 2} .3841931{col 37}{space 1}    5.89{col 46}{space 3}0.000{col 54}{space 4} 1.509089{col 67}{space 3} 3.015698
+{txt}{space 9}NE  {c |}{col 14}{res}{space 2} .9034245{col 26}{space 2} .3704462{col 37}{space 1}    2.44{col 46}{space 3}0.015{col 54}{space 4} .1770742{col 67}{space 3} 1.629775
+{txt}{space 9}NH  {c |}{col 14}{res}{space 2}-.0532804{col 26}{space 2} .7228772{col 37}{space 1}   -0.07{col 46}{space 3}0.941{col 54}{space 4}-1.470658{col 67}{space 3} 1.364097
+{txt}{space 9}NJ  {c |}{col 14}{res}{space 2} 1.477645{col 26}{space 2} .5275364{col 37}{space 1}    2.80{col 46}{space 3}0.005{col 54}{space 4} .4432805{col 67}{space 3} 2.512009
+{txt}{space 9}NM  {c |}{col 14}{res}{space 2}-.3455481{col 26}{space 2} .5047174{col 37}{space 1}   -0.68{col 46}{space 3}0.494{col 54}{space 4} -1.33517{col 67}{space 3} .6440737
+{txt}{space 9}NV  {c |}{col 14}{res}{space 2} .0812888{col 26}{space 2} .5554224{col 37}{space 1}    0.15{col 46}{space 3}0.884{col 54}{space 4}-1.007753{col 67}{space 3}  1.17033
+{txt}{space 9}NY  {c |}{col 14}{res}{space 2}-.2117818{col 26}{space 2} .4927214{col 37}{space 1}   -0.43{col 46}{space 3}0.667{col 54}{space 4}-1.177883{col 67}{space 3}  .754319
+{txt}{space 9}OH  {c |}{col 14}{res}{space 2} 1.012669{col 26}{space 2} .4447839{col 37}{space 1}    2.28{col 46}{space 3}0.023{col 54}{space 4} .1405616{col 67}{space 3} 1.884776
+{txt}{space 9}OK  {c |}{col 14}{res}{space 2} .5815084{col 26}{space 2} .4642579{col 37}{space 1}    1.25{col 46}{space 3}0.210{col 54}{space 4}-.3287828{col 67}{space 3}   1.4918
+{txt}{space 9}OR  {c |}{col 14}{res}{space 2}-.0257479{col 26}{space 2} .4890971{col 37}{space 1}   -0.05{col 46}{space 3}0.958{col 54}{space 4}-.9847423{col 67}{space 3} .9332464
+{txt}{space 9}PA  {c |}{col 14}{res}{space 2} .8842801{col 26}{space 2} .4423299{col 37}{space 1}    2.00{col 46}{space 3}0.046{col 54}{space 4} .0169842{col 67}{space 3} 1.751576
+{txt}{space 9}RI  {c |}{col 14}{res}{space 2} .4267809{col 26}{space 2} .6954482{col 37}{space 1}    0.61{col 46}{space 3}0.539{col 54}{space 4}-.9368152{col 67}{space 3} 1.790377
+{txt}{space 9}SC  {c |}{col 14}{res}{space 2}-.1096453{col 26}{space 2} .6538904{col 37}{space 1}   -0.17{col 46}{space 3}0.867{col 54}{space 4}-1.391757{col 67}{space 3} 1.172467
+{txt}{space 9}SD  {c |}{col 14}{res}{space 2} 2.379113{col 26}{space 2} .3828692{col 37}{space 1}    6.21{col 46}{space 3}0.000{col 54}{space 4} 1.628404{col 67}{space 3} 3.129821
+{txt}{space 9}TN  {c |}{col 14}{res}{space 2} .8108575{col 26}{space 2} .5556421{col 37}{space 1}    1.46{col 46}{space 3}0.145{col 54}{space 4}-.2786147{col 67}{space 3}  1.90033
+{txt}{space 9}TX  {c |}{col 14}{res}{space 2} 1.418639{col 26}{space 2} .4011817{col 37}{space 1}    3.54{col 46}{space 3}0.000{col 54}{space 4} .6320237{col 67}{space 3} 2.205253
+{txt}{space 9}UT  {c |}{col 14}{res}{space 2}-.2698675{col 26}{space 2}  .431276{col 37}{space 1}   -0.63{col 46}{space 3}0.532{col 54}{space 4} -1.11549{col 67}{space 3} .5757546
+{txt}{space 9}VA  {c |}{col 14}{res}{space 2}-.1263529{col 26}{space 2} .3962688{col 37}{space 1}   -0.32{col 46}{space 3}0.750{col 54}{space 4}-.9033346{col 67}{space 3} .6506289
+{txt}{space 9}VT  {c |}{col 14}{res}{space 2} .0039933{col 26}{space 2} .5221983{col 37}{space 1}    0.01{col 46}{space 3}0.994{col 54}{space 4}-1.019904{col 67}{space 3} 1.027891
+{txt}{space 9}WA  {c |}{col 14}{res}{space 2} .1794689{col 26}{space 2} .4373939{col 37}{space 1}    0.41{col 46}{space 3}0.682{col 54}{space 4}-.6781488{col 67}{space 3} 1.037087
+{txt}{space 9}WI  {c |}{col 14}{res}{space 2} .8028529{col 26}{space 2} .4001546{col 37}{space 1}    2.01{col 46}{space 3}0.045{col 54}{space 4} .0182519{col 67}{space 3} 1.587454
+{txt}{space 9}WV  {c |}{col 14}{res}{space 2} .4580863{col 26}{space 2} .4771255{col 37}{space 1}    0.96{col 46}{space 3}0.337{col 54}{space 4}-.4774348{col 67}{space 3} 1.393607
+{txt}{space 9}WY  {c |}{col 14}{res}{space 2} .4511446{col 26}{space 2} .4594921{col 37}{space 1}    0.98{col 46}{space 3}0.326{col 54}{space 4}-.4498019{col 67}{space 3} 1.352091
+{txt}{space 12} {c |}
+{space 8}ccvi {c |}{col 14}{res}{space 2} .5100759{col 26}{space 2} 1.092639{col 37}{space 1}    0.47{col 46}{space 3}0.641{col 54}{space 4} -1.63231{col 67}{space 3} 2.652461
+{txt}{space 12} {c |}
+{space 3}ST#c.ccvi {c |}
+{space 9}AL  {c |}{col 14}{res}{space 2} .8247098{col 26}{space 2} 1.325851{col 37}{space 1}    0.62{col 46}{space 3}0.534{col 54}{space 4}-1.774945{col 67}{space 3} 3.424365
+{txt}{space 9}AR  {c |}{col 14}{res}{space 2}-.8105346{col 26}{space 2} 1.186667{col 37}{space 1}   -0.68{col 46}{space 3}0.495{col 54}{space 4}-3.137285{col 67}{space 3} 1.516216
+{txt}{space 9}AZ  {c |}{col 14}{res}{space 2} 3.818923{col 26}{space 2} 1.841543{col 37}{space 1}    2.07{col 46}{space 3}0.038{col 54}{space 4} .2081275{col 67}{space 3} 7.429718
+{txt}{space 9}CA  {c |}{col 14}{res}{space 2} .2223845{col 26}{space 2} 1.176711{col 37}{space 1}    0.19{col 46}{space 3}0.850{col 54}{space 4}-2.084845{col 67}{space 3} 2.529614
+{txt}{space 9}CO  {c |}{col 14}{res}{space 2} 1.467616{col 26}{space 2} 1.188946{col 37}{space 1}    1.23{col 46}{space 3}0.217{col 54}{space 4}-.8636025{col 67}{space 3} 3.798835
+{txt}{space 9}CT  {c |}{col 14}{res}{space 2}   2.0293{col 26}{space 2} 2.572068{col 37}{space 1}    0.79{col 46}{space 3}0.430{col 54}{space 4}-3.013868{col 67}{space 3} 7.072469
+{txt}{space 9}DE  {c |}{col 14}{res}{space 2} .4346478{col 26}{space 2} 4.660817{col 37}{space 1}    0.09{col 46}{space 3}0.926{col 54}{space 4}-8.704023{col 67}{space 3} 9.573319
+{txt}{space 9}FL  {c |}{col 14}{res}{space 2}  .655928{col 26}{space 2}  1.29199{col 37}{space 1}    0.51{col 46}{space 3}0.612{col 54}{space 4}-1.877334{col 67}{space 3}  3.18919
+{txt}{space 9}GA  {c |}{col 14}{res}{space 2} 1.297687{col 26}{space 2} 1.142043{col 37}{space 1}    1.14{col 46}{space 3}0.256{col 54}{space 4}-.9415665{col 67}{space 3} 3.536941
+{txt}{space 9}HI  {c |}{col 14}{res}{space 2} .4134457{col 26}{space 2}   6.9334{col 37}{space 1}    0.06{col 46}{space 3}0.952{col 54}{space 4}-13.18118{col 67}{space 3} 14.00807
+{txt}{space 9}IA  {c |}{col 14}{res}{space 2}-.8198854{col 26}{space 2} 1.200268{col 37}{space 1}   -0.68{col 46}{space 3}0.495{col 54}{space 4}-3.173303{col 67}{space 3} 1.533532
+{txt}{space 9}ID  {c |}{col 14}{res}{space 2} .9271464{col 26}{space 2} 1.336023{col 37}{space 1}    0.69{col 46}{space 3}0.488{col 54}{space 4}-1.692454{col 67}{space 3} 3.546747
+{txt}{space 9}IL  {c |}{col 14}{res}{space 2}-.4613244{col 26}{space 2} 1.164324{col 37}{space 1}   -0.40{col 46}{space 3}0.692{col 54}{space 4}-2.744266{col 67}{space 3} 1.821617
+{txt}{space 9}IN  {c |}{col 14}{res}{space 2}-.1234873{col 26}{space 2} 1.168871{col 37}{space 1}   -0.11{col 46}{space 3}0.916{col 54}{space 4}-2.415345{col 67}{space 3} 2.168371
+{txt}{space 9}KS  {c |}{col 14}{res}{space 2}-2.195606{col 26}{space 2} 1.182433{col 37}{space 1}   -1.86{col 46}{space 3}0.063{col 54}{space 4}-4.514054{col 67}{space 3} .1228431
+{txt}{space 9}KY  {c |}{col 14}{res}{space 2} .0536897{col 26}{space 2} 1.184993{col 37}{space 1}    0.05{col 46}{space 3}0.964{col 54}{space 4}-2.269779{col 67}{space 3} 2.377159
+{txt}{space 9}LA  {c |}{col 14}{res}{space 2} 2.254628{col 26}{space 2} 1.278377{col 37}{space 1}    1.76{col 46}{space 3}0.078{col 54}{space 4}-.2519434{col 67}{space 3} 4.761199
+{txt}{space 9}MA  {c |}{col 14}{res}{space 2} 2.353722{col 26}{space 2} 1.563926{col 37}{space 1}    1.51{col 46}{space 3}0.132{col 54}{space 4}-.7127373{col 67}{space 3} 5.420181
+{txt}{space 9}MD  {c |}{col 14}{res}{space 2}-.1814144{col 26}{space 2}   1.3274{col 37}{space 1}   -0.14{col 46}{space 3}0.891{col 54}{space 4}-2.784107{col 67}{space 3} 2.421278
+{txt}{space 9}ME  {c |}{col 14}{res}{space 2}-.1183005{col 26}{space 2} 2.424769{col 37}{space 1}   -0.05{col 46}{space 3}0.961{col 54}{space 4}-4.872652{col 67}{space 3} 4.636051
+{txt}{space 9}MI  {c |}{col 14}{res}{space 2}  .282905{col 26}{space 2} 1.196119{col 37}{space 1}    0.24{col 46}{space 3}0.813{col 54}{space 4}-2.062378{col 67}{space 3} 2.628188
+{txt}{space 9}MN  {c |}{col 14}{res}{space 2} .1017052{col 26}{space 2} 1.263808{col 37}{space 1}    0.08{col 46}{space 3}0.936{col 54}{space 4}-2.376298{col 67}{space 3} 2.579709
+{txt}{space 9}MO  {c |}{col 14}{res}{space 2} .0233919{col 26}{space 2} 1.153662{col 37}{space 1}    0.02{col 46}{space 3}0.984{col 54}{space 4}-2.238645{col 67}{space 3} 2.285429
+{txt}{space 9}MS  {c |}{col 14}{res}{space 2} .9506911{col 26}{space 2} 1.214982{col 37}{space 1}    0.78{col 46}{space 3}0.434{col 54}{space 4}-1.431578{col 67}{space 3}  3.33296
+{txt}{space 9}MT  {c |}{col 14}{res}{space 2} 4.390067{col 26}{space 2} 1.426606{col 37}{space 1}    3.08{col 46}{space 3}0.002{col 54}{space 4} 1.592858{col 67}{space 3} 7.187276
+{txt}{space 9}NC  {c |}{col 14}{res}{space 2} .9854485{col 26}{space 2} 1.192075{col 37}{space 1}    0.83{col 46}{space 3}0.408{col 54}{space 4}-1.351907{col 67}{space 3} 3.322804
+{txt}{space 9}ND  {c |}{col 14}{res}{space 2}-1.160855{col 26}{space 2} 1.383496{col 37}{space 1}   -0.84{col 46}{space 3}0.401{col 54}{space 4}-3.873537{col 67}{space 3} 1.551826
+{txt}{space 9}NE  {c |}{col 14}{res}{space 2} .2645311{col 26}{space 2} 1.201186{col 37}{space 1}    0.22{col 46}{space 3}0.826{col 54}{space 4}-2.090688{col 67}{space 3} 2.619751
+{txt}{space 9}NH  {c |}{col 14}{res}{space 2} 2.063522{col 26}{space 2} 3.625428{col 37}{space 1}    0.57{col 46}{space 3}0.569{col 54}{space 4}-5.045015{col 67}{space 3} 9.172059
+{txt}{space 9}NJ  {c |}{col 14}{res}{space 2} .3330697{col 26}{space 2}  1.26687{col 37}{space 1}    0.26{col 46}{space 3}0.793{col 54}{space 4}-2.150938{col 67}{space 3} 2.817077
+{txt}{space 9}NM  {c |}{col 14}{res}{space 2} 3.456002{col 26}{space 2} 1.347753{col 37}{space 1}    2.56{col 46}{space 3}0.010{col 54}{space 4} .8134032{col 67}{space 3} 6.098601
+{txt}{space 9}NV  {c |}{col 14}{res}{space 2} 1.299821{col 26}{space 2} 1.482011{col 37}{space 1}    0.88{col 46}{space 3}0.381{col 54}{space 4}-1.606024{col 67}{space 3} 4.205666
+{txt}{space 9}NY  {c |}{col 14}{res}{space 2} 1.503596{col 26}{space 2} 1.231645{col 37}{space 1}    1.22{col 46}{space 3}0.222{col 54}{space 4} -.911346{col 67}{space 3} 3.918538
+{txt}{space 9}OH  {c |}{col 14}{res}{space 2}-.7729574{col 26}{space 2} 1.194711{col 37}{space 1}   -0.65{col 46}{space 3}0.518{col 54}{space 4} -3.11548{col 67}{space 3} 1.569565
+{txt}{space 9}OK  {c |}{col 14}{res}{space 2} -.305794{col 26}{space 2} 1.177272{col 37}{space 1}   -0.26{col 46}{space 3}0.795{col 54}{space 4}-2.614124{col 67}{space 3} 2.002536
+{txt}{space 9}OR  {c |}{col 14}{res}{space 2} .5120851{col 26}{space 2} 1.380867{col 37}{space 1}    0.37{col 46}{space 3}0.711{col 54}{space 4}-2.195442{col 67}{space 3} 3.219612
+{txt}{space 9}PA  {c |}{col 14}{res}{space 2} .4168703{col 26}{space 2} 1.256171{col 37}{space 1}    0.33{col 46}{space 3}0.740{col 54}{space 4}-2.046161{col 67}{space 3} 2.879901
+{txt}{space 9}RI  {c |}{col 14}{res}{space 2} 2.300377{col 26}{space 2} 2.207647{col 37}{space 1}    1.04{col 46}{space 3}0.297{col 54}{space 4}-2.028254{col 67}{space 3} 6.629008
+{txt}{space 9}SC  {c |}{col 14}{res}{space 2}  1.51388{col 26}{space 2} 1.320493{col 37}{space 1}    1.15{col 46}{space 3}0.252{col 54}{space 4} -1.07527{col 67}{space 3} 4.103029
+{txt}{space 9}SD  {c |}{col 14}{res}{space 2}-.6340347{col 26}{space 2} 1.190792{col 37}{space 1}   -0.53{col 46}{space 3}0.594{col 54}{space 4}-2.968873{col 67}{space 3} 1.700803
+{txt}{space 9}TN  {c |}{col 14}{res}{space 2} .2241008{col 26}{space 2} 1.230158{col 37}{space 1}    0.18{col 46}{space 3}0.855{col 54}{space 4}-2.187925{col 67}{space 3} 2.636127
+{txt}{space 9}TX  {c |}{col 14}{res}{space 2} -.242075{col 26}{space 2} 1.119642{col 37}{space 1}   -0.22{col 46}{space 3}0.829{col 54}{space 4}-2.437406{col 67}{space 3} 1.953256
+{txt}{space 9}UT  {c |}{col 14}{res}{space 2} 1.035532{col 26}{space 2} 1.418758{col 37}{space 1}    0.73{col 46}{space 3}0.466{col 54}{space 4}-1.746289{col 67}{space 3} 3.817353
+{txt}{space 9}VA  {c |}{col 14}{res}{space 2} 1.028906{col 26}{space 2} 1.128891{col 37}{space 1}    0.91{col 46}{space 3}0.362{col 54}{space 4}-1.184561{col 67}{space 3} 3.242373
+{txt}{space 9}VT  {c |}{col 14}{res}{space 2} .7702713{col 26}{space 2} 5.462307{col 37}{space 1}    0.14{col 46}{space 3}0.888{col 54}{space 4}-9.939917{col 67}{space 3} 11.48046
+{txt}{space 9}WA  {c |}{col 14}{res}{space 2}-.0179948{col 26}{space 2} 1.234263{col 37}{space 1}   -0.01{col 46}{space 3}0.988{col 54}{space 4}-2.438068{col 67}{space 3} 2.402079
+{txt}{space 9}WI  {c |}{col 14}{res}{space 2} .4548749{col 26}{space 2} 1.257875{col 37}{space 1}    0.36{col 46}{space 3}0.718{col 54}{space 4}-2.011496{col 67}{space 3} 2.921245
+{txt}{space 9}WV  {c |}{col 14}{res}{space 2}  .361677{col 26}{space 2} 1.432194{col 37}{space 1}    0.25{col 46}{space 3}0.801{col 54}{space 4}-2.446489{col 67}{space 3} 3.169843
+{txt}{space 9}WY  {c |}{col 14}{res}{space 2} 2.827341{col 26}{space 2} 2.379413{col 37}{space 1}    1.19{col 46}{space 3}0.235{col 54}{space 4} -1.83808{col 67}{space 3} 7.492763
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .0811493{col 26}{space 2} .3563267{col 37}{space 1}    0.23{col 46}{space 3}0.820{col 54}{space 4}-.6175163{col 67}{space 3}  .779815
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. local SSRes_full_ccvi = e(rss)
+
+. 
+. 
+. * Proportion of within-state variance in COVID-19 mortality explained by CCVI
+
+. di (`SSRes_reduced' - `SSRes_full_ccvi')/`SSRes_reduced'
+{res}.0800445
+
+{com}. 
+. 
+. gen ccvi_state_association = .
+{txt}(3,141 missing values generated)
+
+{com}. forvalues i = 1/50{c -(}
+{txt}  2{com}. qui lincom ccvi + `i'.ST#ccvi
+{txt}  3{com}. local cur_est = r(estimate)
+{txt}  4{com}. qui replace ccvi_state_association = `cur_est'/10 if ST == `i'
+{txt}  5{com}. {c )-}
+
+. 
+. gen state_r_squared_ccvi = .
+{txt}(3,141 missing values generated)
+
+{com}. forvalues i = 1/50{c -(}
+{txt}  2{com}. qui regress deaths_per_thous ccvi if ST == `i'
+{txt}  3{com}. local r_sq = e(r2)
+{txt}  4{com}. qui replace state_r_squared_ccvi = `r_sq' if ST == `i'
+{txt}  5{com}. {c )-}
+
+. 
+. summarize ccvi_state_association if state_flag ==1, detail
+
+                   {txt}ccvi_state_association
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} -.168553       -.168553
+{txt} 5%    {res} -.030981      -.0650779
+{txt}10%    {res} -.019342       -.030981       {txt}Obs         {res}         50
+{txt}25%    {res} .0492081      -.0300459       {txt}Sum of Wgt. {res}         50
+
+{txt}50%    {res} .0935835                      {txt}Mean          {res} .1230281
+                        {txt}Largest       Std. Dev.     {res} .1271611
+{txt}75%    {res} .1809897       .3337417
+{txt}90%    {res} .2837125       .3966078       {txt}Variance      {res}   .01617
+{txt}95%    {res} .3966078       .4328999       {txt}Skewness      {res}  .753542
+{txt}99%    {res} .4900143       .4900143       {txt}Kurtosis      {res} 3.878673
+
+{com}. 
+. sort state_r_squared_ccvi
+
+. format state_r_squared_ccvi %12.4f
+
+. list state state_r_squared_ccvi if state_flag ==1
+{txt}
+      {c TLC}{hline 7}{c -}{hline 10}{c TRC}
+      {c |} {res}state   stat~cvi {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+  30. {c |} {res}   IL     0.0002 {txt}{c |}
+ 161. {c |} {res}   SD     0.0002 {txt}{c |}
+ 218. {c |} {res}   ND     0.0029 {txt}{c |}
+ 454. {c |} {res}   TX     0.0030 {txt}{c |}
+ 511. {c |} {res}   IA     0.0034 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+ 612. {c |} {res}   AR     0.0062 {txt}{c |}
+ 725. {c |} {res}   OH     0.0079 {txt}{c |}
+ 782. {c |} {res}   OK     0.0122 {txt}{c |}
+ 891. {c |} {res}   MN     0.0143 {txt}{c |}
+ 977. {c |} {res}   NE     0.0206 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+1059. {c |} {res}   KY     0.0226 {txt}{c |}
+1121. {c |} {res}   MD     0.0229 {txt}{c |}
+1166. {c |} {res}   IN     0.0265 {txt}{c |}
+1285. {c |} {res}   WI     0.0304 {txt}{c |}
+1315. {c |} {res}   TN     0.0305 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+1449. {c |} {res}   WV     0.0323 {txt}{c |}
+1474. {c |} {res}   AK     0.0370 {txt}{c |}
+1522. {c |} {res}   MO     0.0376 {txt}{c |}
+1627. {c |} {res}   MI     0.0385 {txt}{c |}
+1750. {c |} {res}   KS     0.0467 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+1789. {c |} {res}   ME     0.0514 {txt}{c |}
+1863. {c |} {res}   AL     0.0569 {txt}{c |}
+1907. {c |} {res}   FL     0.0659 {txt}{c |}
+2007. {c |} {res}   MS     0.0755 {txt}{c |}
+2030. {c |} {res}   VT     0.0788 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+2064. {c |} {res}   PA     0.0874 {txt}{c |}
+2102. {c |} {res}   WA     0.1247 {txt}{c |}
+2242. {c |} {res}   GA     0.1257 {txt}{c |}
+2332. {c |} {res}   MT     0.1731 {txt}{c |}
+2362. {c |} {res}   NJ     0.1757 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+2412. {c |} {res}   CA     0.1962 {txt}{c |}
+2452. {c |} {res}   NY     0.2010 {txt}{c |}
+2499. {c |} {res}   WY     0.2019 {txt}{c |}
+2554. {c |} {res}   ID     0.2046 {txt}{c |}
+2563. {c |} {res}   HI     0.2051 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+2676. {c |} {res}   VA     0.2126 {txt}{c |}
+2699. {c |} {res}   DE     0.2190 {txt}{c |}
+2702. {c |} {res}   NH     0.2240 {txt}{c |}
+2713. {c |} {res}   LA     0.2240 {txt}{c |}
+2777. {c |} {res}   OR     0.2520 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+2863. {c |} {res}   CO     0.2528 {txt}{c |}
+2972. {c |} {res}   NC     0.2814 {txt}{c |}
+2980. {c |} {res}   SC     0.3137 {txt}{c |}
+3045. {c |} {res}   UT     0.3251 {txt}{c |}
+3056. {c |} {res}   CT     0.3406 {txt}{c |}
+      {c LT}{hline 7}{c -}{hline 10}{c RT}
+3065. {c |} {res}   NV     0.3795 {txt}{c |}
+3103. {c |} {res}   NM     0.3989 {txt}{c |}
+3119. {c |} {res}   AZ     0.4181 {txt}{c |}
+3123. {c |} {res}   RI     0.5426 {txt}{c |}
+3132. {c |} {res}   MA     0.5481 {txt}{c |}
+      {c BLC}{hline 7}{c -}{hline 10}{c BRC}
+
+{com}. 
+. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/shan/Dropbox/Susan (personal)/vaccine allocation/national data/SVI_mortality_19Jan.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}19 Jan 2021, 11:27:27
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
